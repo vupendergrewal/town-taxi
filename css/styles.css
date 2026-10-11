@@ -791,6 +791,7 @@ main > .section:first-child { padding-top: 140px; }
   .desk-book { display: none; }
   .nav-links .menu-book { display: inline-flex; }
 }
+html.is-night .split p { color: #f3eee4; }
 html.is-night body {
   color: #f3eee4;
   background:
