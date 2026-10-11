@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <title>Contact Town Taxi | Dunedin</title>
+  <meta name="description" content="Call, WhatsApp or email Town Taxi in Dunedin. Open 24 hours.">
+  <link rel="icon" href="assets/logo-tile.png">
+  <link rel="stylesheet" href="css/lenis.css">
+  <link rel="stylesheet" href="css/styles.css?v=20">
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("townTaxiTheme");
+        var night = saved === "night";
+        if (saved !== "day" && saved !== "night") {
+          var parts = new Intl.DateTimeFormat("en-GB", { timeZone: "Pacific/Auckland", month: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(new Date());
+          var pick = function (type) { return Number((parts.find(function (part) { return part.type === type; }) || {}).value || 0); };
+          var now = pick("hour") * 60 + pick("minute");
+          var table = { 1: [360, 1275], 2: [400, 1240], 3: [440, 1180], 4: [410, 1090], 5: [450, 1040], 6: [480, 1020], 7: [470, 1035], 8: [435, 1070], 9: [390, 1100], 10: [380, 1190], 11: [340, 1240], 12: [330, 1280] };
+          var pair = table[pick("month")] || [390, 1170];
+          night = now < pair[0] || now >= pair[1];
+        }
+        if (night) document.documentElement.classList.add("is-night");
+      } catch (error) {}
+    })();
+  </script>
+</head>
+<body>
+  <div class="scroll-line" aria-hidden="true"><span id="scrollLine"></span></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="nav">
+      <a class="brand" href="index.html">
+        <img src="assets/logo-mark.png" alt="">
+        <span>Town Taxi<small>Dunedin</small></span>
+      </a>
+      <nav class="nav-links" data-lenis-prevent-touch>
+        <a href="index.html">Home</a>
+        <div class="drop">
+          <button class="drop-btn" type="button" aria-expanded="false">Services</button>
+          <div class="drop-panel">
+            <a href="services/taxi.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15h16l-1.4-4.2A2 2 0 0 0 16.7 9H7.3a2 2 0 0 0-1.9 1.4L4 15z"/><path d="M7 15v2M17 15v2"/><circle cx="7.5" cy="16.5" r="1"/><circle cx="16.5" cy="16.5" r="1"/></svg>Taxi</a>
+<a href="services/event-management.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/></svg>Event Management</a>
+<a href="services/conference-booking.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11a3 3 0 1 0-3-3 3 3 0 0 0 3 3zM16 11a2.5 2.5 0 1 0-2.5-2.5A2.5 2.5 0 0 0 16 11z"/><path d="M3.5 19c.4-2.4 2.4-4 5.5-4s5.1 1.6 5.5 4M14 15c1.8 0 3.6.8 4.2 3"/></svg>Conference Booking</a>
+<a href="services/group-transport.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11a3 3 0 1 0-3-3 3 3 0 0 0 3 3zM16 11a2.5 2.5 0 1 0-2.5-2.5A2.5 2.5 0 0 0 16 11z"/><path d="M3.5 19c.4-2.4 2.4-4 5.5-4s5.1 1.6 5.5 4M14 15c1.8 0 3.6.8 4.2 3"/></svg>Group Transport</a>
+<a href="services/airport-transfer.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12l18-6-6 16-2.5-6.2L3 12z"/></svg>Airport Transfer</a>
+<a href="services/companion-service.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3"/><path d="M6 19c.8-3 2.8-4.5 6-4.5S17.2 16 18 19"/></svg>Companion Service</a>
+<a href="services/private-drivers.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2"/><path d="M12 4v6M12 14v6M4 12h6M14 12h6"/></svg>Private Drivers</a>
+<a href="services/corporate-vehicle.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1M3 12h18"/></svg>Corporate Vehicle</a>
+<a href="services/total-mobility.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="6" r="2"/><path d="M8 9v5h4l2 5"/><path d="M6 14h6"/><circle cx="17" cy="17" r="3"/><path d="M17 14v-3h3"/></svg>Total Mobility Service</a>
+<a href="services/package-delivery.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l9-4 9 4-9 4-9-4z"/><path d="M3 8v8l9 4 9-4V8M12 12v8"/></svg>Urgent Package Delivery</a>
+<a href="services/jump-start.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3L5 14h7l-1 7 8-11h-7l1-7z"/></svg>Jump Start</a>
+<a href="services/ski-transfers.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M5 7l14 10M19 7L5 17"/><path d="M12 7l2-1M12 7l-2-1M12 17l2 1M12 17l-2 1"/></svg>Ski Transfers</a>
+          </div>
+        </div>
+        <a href="about.html">About</a>
+        <a href="areas.html">Areas</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+        <a class="btn btn-yellow menu-book" href="index.html#book">Book a cab</a>
+      </nav>
+      <button class="theme-btn" type="button" aria-pressed="false" aria-label="Switch to night">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.2 13.4A6.4 6.4 0 0 1 9.6 4.3 7 7 0 1 0 19.7 14.2a6.4 6.4 0 0 1-3.5-.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.4"/><path d="M12 3.2v2.2M12 18.6v2.2M3.2 12h2.2M18.6 12h2.2M5.8 5.8l1.5 1.5M16.7 16.7l1.5 1.5M18.2 5.8l-1.5 1.5M7.3 16.7l-1.5 1.5"/></svg>
+      </button>
+      <a class="btn btn-yellow desk-book" href="index.html#book">Book a cab</a>
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+  
+    <main>
+      <section class="section">
+        <div class="wrap">
+          <p class="eyebrow">Contact</p>
+          <h1>Call, or send the booking through.</h1>
+          <div class="contact-grid" style="margin-top:28px">
+            <div>
+              <article class="glass card"><h3>Phone</h3><p><a href="tel:+64204522958" data-copy="+64 20 452 2958">+64 20 452 2958</a></p><p>Same number on WhatsApp.<br><a href="https://wa.me/64204522958">Open WhatsApp</a></p></article>
+              <article class="glass card"><h3>Email</h3><p><a href="mailto:hitowntaxi@gmail.com">hitowntaxi@gmail.com</a></p></article>
+              <article class="glass card"><h3>Base</h3><p>Dunedin, New Zealand<br>Open 24 hours, 7 days.</p><p><a href="https://www.facebook.com/share/18od8Xp4LX/" target="_blank" rel="noreferrer">Facebook</a></p></article>
+            </div>
+            <div class="map-frame">
+              <iframe title="Map of Dunedin, New Zealand" src="https://www.openstreetmap.org/export/embed.html?bbox=170.45%2C-45.95%2C170.62%2C-45.82&amp;layer=mapnik&amp;marker=-45.8742%2C170.5036"></iframe>
+            </div>
+          </div>
+          <p class="fine" style="margin-top:10px">Map by OpenStreetMap. It does not use a paid key, so it will not expire.</p>
+        </div>
+      </section>
+      <section class="section" style="padding-top:0">
+        <div class="wrap" style="max-width:760px" id="book">
+        <form class="glass book" id="bookingForm">
+          <h2 class="serif">Book a cab</h2>
+          <p>We confirm by phone. Email is optional. No flight number.</p>
+          <p class="weather" id="dunWeather" hidden></p>
+          <p class="trip-line" id="tripLine">Tell us the pickup and drop-off.</p>
+          <div class="route-sketch" id="routeSketch" hidden>
+            <svg viewBox="0 0 280 28" aria-hidden="true">
+              <path class="route-path" d="M8 16 H272"/>
+              <circle cx="8" cy="16" r="3.5"/>
+              <circle class="route-via" cx="140" cy="16" r="3" hidden/>
+              <circle class="route-end" cx="272" cy="16" r="3.5"/>
+            </svg>
+            <span id="routeEnds"></span>
+          </div>
+          <div class="fields">
+            <div class="field"><label for="name">Name</label><input id="name" name="name" required autocomplete="name"></div>
+            <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" required autocomplete="tel"></div>
+            <div class="field full"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email"></div>
+            <div class="field"><label for="pickup">Pickup</label><input id="pickup" name="pickup" required placeholder="Address, hotel or airport"></div>
+            <div class="field"><label for="dropoff">Drop-off</label><input id="dropoff" name="dropoff" required></div>
+            <div class="field full"><label for="via">Stop on the way</label><input id="via" name="via" placeholder="Optional, one extra stop"></div>
+            <div class="field full">
+              <div class="trip-tools">
+                <button type="button" id="sameTrip" hidden>Same as last time</button>
+                <button type="button" id="swapTrip" aria-label="Swap pickup and drop-off">Swap ends</button>
+                <button type="button" id="shareTrip">Copy a link</button>
+              </div>
+              <div class="recent-trips" id="recentTrips" hidden aria-label="Recent trips"></div>
+              <div class="place-picks" aria-label="Common Dunedin pickups">
+                <button type="button" data-place="Dunedin Airport">Airport</button>
+                <button type="button" data-place="The Octagon">Octagon</button>
+                <button type="button" data-place="Dunedin Hospital">Hospital</button>
+                <button type="button" data-place="University of Otago">Campus</button>
+                <button type="button" data-place="St Clair">St Clair</button>
+                <button type="button" data-place="Mosgiel">Mosgiel</button>
+              </div>
+            </div>
+            <div class="field"><label for="pickupDate">Date</label><input id="pickupDate" name="pickupDate" type="date" required></div>
+            <div class="field">
+              <label for="pickupTime">Pickup time</label>
+              <div class="time-picks">
+                <button class="chip is-on" type="button" data-when="now">Now</button>
+                <button class="chip" type="button" data-when="later">Later</button>
+              </div>
+              <input id="pickupTime" name="pickupTime" type="time" required>
+              <input type="hidden" id="timeMode" name="timeMode" value="now">
+            </div>
+            <div class="field"><label for="passengers">Passengers</label>
+              <select id="passengers" name="passengers" required>
+                <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option>
+              </select>
+            </div>
+            <div class="field"><label for="service">Service</label><select id="service" name="service"><option value="Taxi">Not sure yet</option><option value="Taxi">Taxi</option><option value="Event Management">Event Management</option><option value="Conference Booking">Conference Booking</option><option value="Group Transport">Group Transport</option><option value="Airport Transfer">Airport Transfer</option><option value="Companion Service">Companion Service</option><option value="Private Drivers">Private Drivers</option><option value="Corporate Vehicle">Corporate Vehicle</option><option value="Total Mobility Service">Total Mobility Service</option><option value="Urgent Package Delivery">Urgent Package Delivery</option><option value="Jump Start">Jump Start</option><option value="Ski Transfers">Ski Transfers</option></select></div>
+            <div class="field full"><label for="notes">Notes</label><textarea id="notes" name="notes" placeholder="Bags, child seat, hotel entrance, access needs"></textarea></div>
+            <input class="full" type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+          </div>
+          <div class="send-row">
+            <button class="btn btn-ink" type="submit">Send booking</button>
+            <a class="btn btn-ghost" id="liveWhats" href="https://wa.me/64204522958" target="_blank" rel="noreferrer">Send this on WhatsApp</a>
+            <a class="btn btn-ghost" id="routeMaps" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving" target="_blank" rel="noreferrer">See the route</a>
+          </div>
+          <p class="form-status" id="formStatus"></p>
+          <div class="slip" id="tripSlip" hidden>
+            <p class="eyebrow">With the desk</p>
+            <h3 id="slipTitle"></h3>
+            <p id="slipBody"></p>
+            <div class="slip-actions">
+              <a class="btn btn-yellow" id="slipWhats" href="https://wa.me/64204522958" target="_blank" rel="noreferrer">Send it on WhatsApp too</a>
+              <a class="btn btn-ghost" id="slipMaps" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving" target="_blank" rel="noreferrer">Open in Maps</a>
+              <button class="btn btn-ghost" id="slipCopy" type="button">Copy details</button>
+              <button class="btn btn-ghost" id="slipDriver" type="button">Show the driver</button>
+              <button class="btn btn-ghost" id="slipCal" type="button" hidden>Add to calendar</button>
+            </div>
+          </div>
+          <p class="fine">Each booking is emailed to gvupender@gmail.com and hitowntaxi@gmail.com. Add an email and a copy comes back to you too.</p>
+        </form>
+    </div>
+      </section>
+    </main>
+    
+  <footer class="site-footer">
+    <div class="horizon-car" aria-hidden="true">
+      <div class="car3d">
+        <div class="car3d-shadow"></div>
+        <div class="car3d-shell">
+          <div class="car3d-roof"></div>
+          <div class="car3d-glass"></div>
+          <div class="car3d-sign">Taxi</div>
+          <div class="car3d-lamp"></div>
+        </div>
+        <div class="car3d-wheel back"><i></i></div>
+        <div class="car3d-wheel front"><i></i></div>
+      </div>
+    </div>
+    <div class="wrap foot">
+      <div>
+        <img class="foot-logo" src="assets/logo-mark.png" alt="">
+        <p>Town Taxi is a Dunedin service for locals, visitors, airport travellers and businesses. Open 24 hours.</p>
+      </div>
+      <div>
+        <h3>Visit</h3>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="areas.html">Areas</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h3>Desk</h3>
+        <a href="tel:+64204522958">+64 20 452 2958</a>
+        <a href="https://wa.me/64204522958" target="_blank" rel="noreferrer">WhatsApp</a>
+        <a href="mailto:hitowntaxi@gmail.com">hitowntaxi@gmail.com</a>
+      </div>
+      <div>
+        <h3>Hours</h3>
+        <p>24 hours, 7 days<br>Dunedin, New Zealand</p>
+        <a href="https://www.facebook.com/share/18od8Xp4LX/" target="_blank" rel="noreferrer">Facebook</a>
+      </div>
+    </div>
+    <div class="wrap legal">© 2026 Town Taxi · towntaxi.co.nz</div>
+  </footer>
+  <a class="call-fab" href="tel:+64204522958" data-copy="+64 20 452 2958" aria-label="Call Town Taxi">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h3l1 4-2 1a12 12 0 0 0 6 6l1-2 4 1v3a2 2 0 0 1-2 2A16 16 0 0 1 6 5a2 2 0 0 1 2-2z"/></svg>
+  </a>
+  <div class="phone-bar">
+    <a class="btn btn-ghost" href="tel:+64204522958">Call</a>
+    <a class="btn btn-yellow" href="index.html#book">Book</a>
+  </div>
+  <div class="driver-card" id="driverCard" hidden>
+    <div class="driver-sheet" role="dialog" aria-modal="true" aria-labelledby="driverWhen">
+      <p class="eyebrow">With the desk</p>
+      <p class="driver-when" id="driverWhen"></p>
+      <div class="driver-ends">
+        <span id="driverFrom"></span>
+        <span class="driver-via" id="driverVia" hidden></span>
+        <span id="driverTo"></span>
+      </div>
+      <p id="driverWho"></p>
+      <p class="driver-phone">Town Taxi · +64 20 452 2958</p>
+      <button class="btn btn-ink" id="driverClose" type="button">Close</button>
+    </div>
+  </div>
+  <div class="toast" role="status"></div>
+  <script src="js/lenis.min.js"></script>
+  <script src="js/site.js?v=20"></script>
+</body>
+</html>
