@@ -686,7 +686,7 @@ form?.addEventListener("submit", async (event) => {
     payload._autoresponse = "Town Taxi has your booking. We will call you on the number you gave to confirm the car.";
   }
   try {
-    const desks = ["gvupender@gmail.com", "hitowntaxi@gmail.com"];
+    const desks = ["hitowntaxi@gmail.com"];
     const results = await Promise.all(desks.map(async (address) => {
       const response = await fetch(`https://formsubmit.co/ajax/${address}`, {
         method: "POST",
@@ -751,7 +751,7 @@ form?.addEventListener("submit", async (event) => {
     if (status) {
       status.className = "form-status bad";
       status.textContent = error.message === "activation"
-        ? "Check gvupender@gmail.com, including spam, for an email called Activate Form. Click that link once, then send the booking again."
+        ? "Check hitowntaxi@gmail.com, including spam, for an email called Activate Form. Click that link once, then send the booking again."
         : "That didn’t send. Call +64 20 452 2958 or email hitowntaxi@gmail.com.";
     }
   } finally {

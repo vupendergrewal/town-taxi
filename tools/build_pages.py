@@ -272,7 +272,7 @@ def shell(title, description, body, prefix="", current=""):
   </div>
   <div class="toast" role="status"></div>
   <script src="{prefix}js/lenis.min.js"></script>
-  <script src="{prefix}js/site.js?v=24"></script>
+  <script src="{prefix}js/site.js?v=25"></script>
 </body>
 </html>
 """
@@ -355,7 +355,7 @@ def booking_form():
               <button class="btn btn-ghost" id="slipCal" type="button" hidden>Add to calendar</button>
             </div>
           </div>
-          <p class="fine">Each booking is emailed to gvupender@gmail.com and hitowntaxi@gmail.com. Add an email and a copy comes back to you too.</p>
+          <p class="fine">Each booking is emailed to hitowntaxi@gmail.com. Add an email and a copy comes back to you too.</p>
         </form>
     """
 
