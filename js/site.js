@@ -294,12 +294,11 @@ function paintTrip() {
   const dropoff = document.querySelector("#dropoff")?.value.trim();
   const via = viaValue();
   const people = document.querySelector("#passengers")?.value || "1";
-  const serviceName = document.querySelector("#service")?.selectedOptions?.[0]?.textContent || "Taxi";
   const when = timeMode?.value === "now" ? "leaving now" : "booked ahead";
   const route = pickup && dropoff
     ? (via ? `${pickup} to ${dropoff}, via ${via}` : `${pickup} to ${dropoff}`)
     : pickup ? `From ${pickup}` : dropoff ? `To ${dropoff}` : "Tell us the pickup and drop-off";
-  tripLine.textContent = `${route} · ${people} passengers · ${serviceName} · ${when}`;
+  tripLine.textContent = `${route} · ${people} passengers · ${when}`;
   const sketch = document.querySelector("#routeSketch");
   const ends = document.querySelector("#routeEnds");
   if (!sketch) return;
@@ -442,36 +441,17 @@ function fillTrip(trip) {
   const service = document.querySelector("#service");
   const notes = document.querySelector("#notes");
   if (passengers && trip.passengers) passengers.value = trip.passengers;
-  if (service && [...service.options].some((option) => option.value === trip.service)) service.value = trip.service;
+  if (service && trip.service && (!service.options || [...service.options].some((option) => option.value === trip.service))) service.value = trip.service;
   if (notes) notes.value = trip.notes || "";
   document.querySelectorAll("[data-place]").forEach((button) => button.classList.remove("is-on"));
   paintTrip();
   paintWhats();
 }
-function shareHref() {
-  const trip = currentTrip();
-  const query = new URLSearchParams();
-  if (trip.pickup) query.set("pickup", trip.pickup);
-  if (trip.dropoff) query.set("dropoff", trip.dropoff);
-  if (trip.via) query.set("via", trip.via);
-  if (trip.passengers && trip.passengers !== "3") query.set("passengers", trip.passengers);
-  if (trip.service && trip.service !== "Taxi") query.set("service", trip.service);
-  if (trip.notes) query.set("notes", trip.notes.slice(0, 180));
-  if (timeMode?.value === "later") {
-    query.set("when", "later");
-    const date = document.querySelector("#pickupDate")?.value;
-    const time = document.querySelector("#pickupTime")?.value;
-    if (date) query.set("date", date);
-    if (time) query.set("time", time);
-  }
-  const text = query.toString();
-  return `${location.origin}${location.pathname}${text ? `?${text}` : ""}#book`;
-}
 function applySharedLink() {
   const query = new URLSearchParams(window.location.search);
   const service = document.querySelector("#service");
   const named = query.get("service");
-  if (service && named && [...service.options].some((option) => option.value === named)) service.value = named;
+  if (service && named && (!service.options || [...service.options].some((option) => option.value === named))) service.value = named;
   const pickup = query.get("pickup") || "";
   const dropoff = query.get("dropoff") || "";
   const via = query.get("via") || "";
@@ -513,20 +493,6 @@ document.querySelector("#swapTrip")?.addEventListener("click", () => {
   paintWhats();
 });
 liveWhats?.addEventListener("click", () => storeTrip(currentTrip()));
-document.querySelector("#shareTrip")?.addEventListener("click", async () => {
-  const trip = currentTrip();
-  if (!trip.pickup || !trip.dropoff) {
-    showToast("Add a pickup and a drop-off first");
-    return;
-  }
-  storeTrip(trip);
-  try {
-    await navigator.clipboard.writeText(shareHref());
-    showToast("Link copied");
-  } catch {
-    showToast("Couldn’t copy the link");
-  }
-});
 document.querySelectorAll("[data-place]").forEach((button) => {
   button.addEventListener("click", () => {
     const dropoff = document.querySelector("#dropoff");
@@ -602,7 +568,7 @@ document.querySelectorAll("[data-trip]").forEach((button) => {
     document.querySelectorAll("[data-trip]").forEach((other) => other.classList.toggle("is-on", other === button));
     const service = document.querySelector("#service");
     const pickup = document.querySelector("#pickup");
-    if (service && [...service.options].some((option) => option.value === plan.service)) service.value = plan.service;
+    if (service && plan.service && (!service.options || [...service.options].some((option) => option.value === plan.service))) service.value = plan.service;
     if (pickup && plan.pickup && !pickup.value.trim()) pickup.value = plan.pickup;
     setWhen(plan.mode);
     paintTrip();

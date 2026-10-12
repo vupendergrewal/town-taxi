@@ -7,7 +7,7 @@
   <meta name="description" content="Call, WhatsApp or email Town Taxi in Dunedin. Open 24 hours.">
   <link rel="icon" href="assets/logo-tile.png">
   <link rel="stylesheet" href="css/lenis.css">
-  <link rel="stylesheet" href="css/styles.css?v=21">
+  <link rel="stylesheet" href="css/styles.css?v=23">
   <script>
     (function () {
       try {
@@ -49,7 +49,6 @@
 <a href="services/companion-service.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3"/><path d="M6 19c.8-3 2.8-4.5 6-4.5S17.2 16 18 19"/></svg>Companion Service</a>
 <a href="services/private-drivers.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2"/><path d="M12 4v6M12 14v6M4 12h6M14 12h6"/></svg>Private Drivers</a>
 <a href="services/corporate-vehicle.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1M3 12h18"/></svg>Corporate Vehicle</a>
-<a href="services/total-mobility.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="6" r="2"/><path d="M8 9v5h4l2 5"/><path d="M6 14h6"/><circle cx="17" cy="17" r="3"/><path d="M17 14v-3h3"/></svg>Total Mobility Service</a>
 <a href="services/package-delivery.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l9-4 9 4-9 4-9-4z"/><path d="M3 8v8l9 4 9-4V8M12 12v8"/></svg>Urgent Package Delivery</a>
 <a href="services/jump-start.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3L5 14h7l-1 7 8-11h-7l1-7z"/></svg>Jump Start</a>
 <a href="services/ski-transfers.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M5 7l14 10M19 7L5 17"/><path d="M12 7l2-1M12 7l-2-1M12 17l2 1M12 17l-2 1"/></svg>Ski Transfers</a>
@@ -106,7 +105,7 @@
           <div class="fields">
             <div class="field"><label for="name">Name</label><input id="name" name="name" required autocomplete="name"></div>
             <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" required autocomplete="tel"></div>
-            <div class="field full"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email"></div>
+            <div class="field full"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="Optional"></div>
             <div class="field"><label for="pickup">Pickup</label><input id="pickup" name="pickup" required placeholder="Address, hotel or airport"></div>
             <div class="field"><label for="dropoff">Drop-off</label><input id="dropoff" name="dropoff" required></div>
             <div class="field full"><label for="via">Stop on the way</label><input id="via" name="via" placeholder="Optional, one extra stop"></div>
@@ -114,9 +113,9 @@
               <div class="trip-tools">
                 <button type="button" id="sameTrip" hidden>Same as last time</button>
                 <button type="button" id="swapTrip" aria-label="Swap pickup and drop-off">Swap ends</button>
-                <button type="button" id="shareTrip">Copy a link</button>
               </div>
               <div class="recent-trips" id="recentTrips" hidden aria-label="Recent trips"></div>
+              <p class="place-note">These buttons fill the drop-off.</p>
               <div class="place-picks" aria-label="Common Dunedin drop-offs">
                 <button type="button" data-place="Dunedin Airport">Airport</button>
                 <button type="button" data-place="The Octagon">Octagon</button>
@@ -142,7 +141,7 @@
                 <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option>
               </select>
             </div>
-            <div class="field"><label for="service">Service</label><select id="service" name="service"><option value="Taxi">Not sure yet</option><option value="Taxi">Taxi</option><option value="Event Management">Event Management</option><option value="Conference Booking">Conference Booking</option><option value="Group Transport">Group Transport</option><option value="Airport Transfer">Airport Transfer</option><option value="Companion Service">Companion Service</option><option value="Private Drivers">Private Drivers</option><option value="Corporate Vehicle">Corporate Vehicle</option><option value="Total Mobility Service">Total Mobility Service</option><option value="Urgent Package Delivery">Urgent Package Delivery</option><option value="Jump Start">Jump Start</option><option value="Ski Transfers">Ski Transfers</option></select></div>
+            <input type="hidden" id="service" name="service" value="Taxi">
             <div class="field full"><label for="notes">Notes</label><textarea id="notes" name="notes" placeholder="Bags, child seat, hotel entrance, access needs"></textarea></div>
             <input class="full" type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
           </div>
@@ -234,6 +233,6 @@
   </div>
   <div class="toast" role="status"></div>
   <script src="js/lenis.min.js"></script>
-  <script src="js/site.js?v=22"></script>
+  <script src="js/site.js?v=24"></script>
 </body>
 </html>

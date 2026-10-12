@@ -99,16 +99,6 @@ SERVICES = [
         "copy": "If you are collecting a client from the airport or moving staff between sites, the car should not be the thing people talk about afterwards. We keep it simple: a confirmed time, a named pickup, and a driver who knows the address. Accounts that book often can deal with one phone number rather than a new driver every trip.",
     },
     {
-        "slug": "total-mobility",
-        "name": "Total Mobility Service",
-        "icon": "access",
-        "line": "Extra room and extra time.",
-        "image": "assets/images/suv.jpg",
-        "alt": "A white SUV with space for luggage",
-        "intro": "Tell us what access you need before we dispatch.",
-        "copy": "If a passenger uses a wheelchair, a walker, or simply needs the driver to wait and not hurry the doors, put that in the booking. We will confirm the vehicle before the job so we are not guessing at the kerb. We will not promise a hoist we do not have on that car. If we cannot do the trip safely, we will say so when you book.",
-    },
-    {
         "slug": "package-delivery",
         "name": "Urgent Package Delivery",
         "icon": "box",
@@ -167,7 +157,7 @@ def shell(title, description, body, prefix="", current=""):
   <meta name="description" content="{description}">
   <link rel="icon" href="{prefix}assets/logo-tile.png">
   <link rel="stylesheet" href="{prefix}css/lenis.css">
-  <link rel="stylesheet" href="{prefix}css/styles.css?v=21">
+  <link rel="stylesheet" href="{prefix}css/styles.css?v=23">
   <script>
     (function () {{
       try {{
@@ -282,16 +272,13 @@ def shell(title, description, body, prefix="", current=""):
   </div>
   <div class="toast" role="status"></div>
   <script src="{prefix}js/lenis.min.js"></script>
-  <script src="{prefix}js/site.js?v=22"></script>
+  <script src="{prefix}js/site.js?v=24"></script>
 </body>
 </html>
 """
 
 
 def booking_form():
-    options = ['<option value="Taxi">Not sure yet</option>']
-    for svc in SERVICES:
-        options.append(f'<option value="{svc["name"]}">{svc["name"]}</option>')
     return f"""
         <form class="glass book" id="bookingForm">
           <h2 class="serif">Book a cab</h2>
@@ -310,7 +297,7 @@ def booking_form():
           <div class="fields">
             <div class="field"><label for="name">Name</label><input id="name" name="name" required autocomplete="name"></div>
             <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" required autocomplete="tel"></div>
-            <div class="field full"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email"></div>
+            <div class="field full"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="Optional"></div>
             <div class="field"><label for="pickup">Pickup</label><input id="pickup" name="pickup" required placeholder="Address, hotel or airport"></div>
             <div class="field"><label for="dropoff">Drop-off</label><input id="dropoff" name="dropoff" required></div>
             <div class="field full"><label for="via">Stop on the way</label><input id="via" name="via" placeholder="Optional, one extra stop"></div>
@@ -318,9 +305,9 @@ def booking_form():
               <div class="trip-tools">
                 <button type="button" id="sameTrip" hidden>Same as last time</button>
                 <button type="button" id="swapTrip" aria-label="Swap pickup and drop-off">Swap ends</button>
-                <button type="button" id="shareTrip">Copy a link</button>
               </div>
               <div class="recent-trips" id="recentTrips" hidden aria-label="Recent trips"></div>
+              <p class="place-note">These buttons fill the drop-off.</p>
               <div class="place-picks" aria-label="Common Dunedin drop-offs">
                 <button type="button" data-place="Dunedin Airport">Airport</button>
                 <button type="button" data-place="The Octagon">Octagon</button>
@@ -346,7 +333,7 @@ def booking_form():
                 <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option>
               </select>
             </div>
-            <div class="field"><label for="service">Service</label><select id="service" name="service">{''.join(options)}</select></div>
+            <input type="hidden" id="service" name="service" value="Taxi">
             <div class="field full"><label for="notes">Notes</label><textarea id="notes" name="notes" placeholder="Bags, child seat, hotel entrance, access needs"></textarea></div>
             <input class="full" type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
           </div>
