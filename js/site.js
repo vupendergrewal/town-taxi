@@ -496,7 +496,7 @@ function applySharedLink() {
     if (timeInput && time) timeInput.value = time;
   }
   document.querySelectorAll("[data-place]").forEach((button) => {
-    button.classList.toggle("is-on", button.getAttribute("data-place") === pickup);
+    button.classList.toggle("is-on", button.getAttribute("data-place") === dropoff);
   });
 }
 showSame();
@@ -529,8 +529,9 @@ document.querySelector("#shareTrip")?.addEventListener("click", async () => {
 });
 document.querySelectorAll("[data-place]").forEach((button) => {
   button.addEventListener("click", () => {
-    if (!pickupInput) return;
-    pickupInput.value = button.getAttribute("data-place") || "";
+    const dropoff = document.querySelector("#dropoff");
+    if (!dropoff) return;
+    dropoff.value = button.getAttribute("data-place") || "";
     document.querySelectorAll("[data-place]").forEach((other) => other.classList.toggle("is-on", other === button));
     paintTrip();
     paintWhats();

@@ -254,6 +254,7 @@ def shell(title, description, body, prefix="", current=""):
         <h3>Hours</h3>
         <p>24 hours, 7 days<br>Dunedin, New Zealand</p>
         <a href="https://www.facebook.com/share/18od8Xp4LX/" target="_blank" rel="noreferrer">Facebook</a>
+        <a href="https://www.instagram.com/towntaxidunedin/" target="_blank" rel="noreferrer">Instagram</a>
       </div>
     </div>
     <div class="wrap legal">© 2026 Town Taxi · towntaxi.co.nz</div>
@@ -281,7 +282,7 @@ def shell(title, description, body, prefix="", current=""):
   </div>
   <div class="toast" role="status"></div>
   <script src="{prefix}js/lenis.min.js"></script>
-  <script src="{prefix}js/site.js?v=20"></script>
+  <script src="{prefix}js/site.js?v=22"></script>
 </body>
 </html>
 """
@@ -320,13 +321,14 @@ def booking_form():
                 <button type="button" id="shareTrip">Copy a link</button>
               </div>
               <div class="recent-trips" id="recentTrips" hidden aria-label="Recent trips"></div>
-              <div class="place-picks" aria-label="Common Dunedin pickups">
+              <div class="place-picks" aria-label="Common Dunedin drop-offs">
                 <button type="button" data-place="Dunedin Airport">Airport</button>
                 <button type="button" data-place="The Octagon">Octagon</button>
                 <button type="button" data-place="Dunedin Hospital">Hospital</button>
-                <button type="button" data-place="University of Otago">Campus</button>
-                <button type="button" data-place="St Clair">St Clair</button>
                 <button type="button" data-place="Mosgiel">Mosgiel</button>
+                <button type="button" data-place="Larnach Castle">Larnach Castle</button>
+                <button type="button" data-place="Tunnel Beach">Tunnel Beach</button>
+                <button type="button" data-place="Portobello Beach">Portobello Beach</button>
               </div>
             </div>
             <div class="field"><label for="pickupDate">Date</label><input id="pickupDate" name="pickupDate" type="date" required></div>
@@ -416,16 +418,7 @@ home = shell(
         <div class="hero-grid">
           <div class="reveal">
             <p class="eyebrow" id="nzClock">Dunedin · Open 24 hours</p>
-            <h1>A cab that is actually there.</h1>
-            <p class="going">Going to <span class="destinations" aria-hidden="true"><span>the Octagon</span><span>the airport</span><span>the hospital</span><span>campus</span><span>St Clair</span><span>Mosgiel</span></span></p>
-            <p class="lede">Town Taxi is a private car for locals, visitors, airport travellers and businesses. Book it now, or set the time and we will be at the door.</p>
-            <div class="trips" aria-label="Common trips">
-              <button type="button" data-trip="now">Right now</button>
-              <button type="button" data-trip="airport">Airport</button>
-              <button type="button" data-trip="town">Around town</button>
-              <button type="button" data-trip="ski">Ski fields</button>
-              <button type="button" data-trip="event">An event</button>
-            </div>
+            <h1>Your trip, your way.</h1>
             <p style="display:flex;gap:10px;flex-wrap:wrap">
               <a class="btn btn-yellow" href="https://wa.me/64204522958" target="_blank" rel="noreferrer">WhatsApp</a>
               <a class="btn btn-ghost" href="tel:+64204522958" data-copy="+64 20 452 2958">Call +64 20 452 2958</a>
@@ -436,8 +429,8 @@ home = shell(
       </section>
       <div class="places" aria-hidden="true">
         <div class="places-track">
-          <span>The Octagon</span><span>Dunedin Airport</span><span>St Clair</span><span>The hospital</span><span>Campus</span><span>Mosgiel</span><span>Port Chalmers</span><span>Queenstown ski</span>
-          <span>The Octagon</span><span>Dunedin Airport</span><span>St Clair</span><span>The hospital</span><span>Campus</span><span>Mosgiel</span><span>Port Chalmers</span><span>Queenstown ski</span>
+          <span>The Octagon</span><span>Dunedin Airport</span><span>Larnach Castle</span><span>The hospital</span><span>Tunnel Beach</span><span>Portobello Beach</span><span>Mosgiel</span><span>Port Chalmers</span>
+          <span>The Octagon</span><span>Dunedin Airport</span><span>Larnach Castle</span><span>The hospital</span><span>Tunnel Beach</span><span>Portobello Beach</span><span>Mosgiel</span><span>Port Chalmers</span>
         </div>
       </div>
       <section class="section" style="padding-top:28px">
@@ -496,7 +489,7 @@ contact = shell(
             <div>
               <article class="glass card"><h3>Phone</h3><p><a href="tel:+64204522958" data-copy="+64 20 452 2958">+64 20 452 2958</a></p><p>Same number on WhatsApp.<br><a href="https://wa.me/64204522958">Open WhatsApp</a></p></article>
               <article class="glass card"><h3>Email</h3><p><a href="mailto:hitowntaxi@gmail.com">hitowntaxi@gmail.com</a></p></article>
-              <article class="glass card"><h3>Base</h3><p>Dunedin, New Zealand<br>Open 24 hours, 7 days.</p><p><a href="https://www.facebook.com/share/18od8Xp4LX/" target="_blank" rel="noreferrer">Facebook</a></p></article>
+              <article class="glass card"><h3>Base</h3><p>Dunedin, New Zealand<br>Open 24 hours, 7 days.</p><p><a href="https://www.facebook.com/share/18od8Xp4LX/" target="_blank" rel="noreferrer">Facebook</a><br><a href="https://www.instagram.com/towntaxidunedin/" target="_blank" rel="noreferrer">Instagram</a></p></article>
             </div>
             <div class="map-frame">
               <iframe title="Map of Dunedin, New Zealand" src="https://www.openstreetmap.org/export/embed.html?bbox=170.45%2C-45.95%2C170.62%2C-45.82&amp;layer=mapnik&amp;marker=-45.8742%2C170.5036"></iframe>
