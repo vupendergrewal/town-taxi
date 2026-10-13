@@ -83,8 +83,9 @@ SERVICES = [
         "name": "Private Drivers",
         "icon": "wheel",
         "line": "A car and driver by the hour.",
-        "image": "assets/images/1500530855697-b586d89ba3ee.jpg",
-        "alt": "Open road toward mountains",
+        "image": "assets/images/dunedin-roslyn.jpg",
+        "alt": "Dunedin city and harbour from the hills",
+        "credit": 'Dunedin from Roslyn. Photo: <a href="https://commons.wikimedia.org/wiki/File:Dunedin_City_Centre_from_Roslyn.jpg">Lord A.Nelson</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>',
         "intro": "Useful for visitors who do not want a rental car.",
         "copy": "Hire the driver for a few hours or the day. Peninsula, the station, Baldwin Street, a run out to the coast — you set the stops, the car stays with you. This is also how longer South Island trips start: Dunedin to Queenstown, Wanaka or Christchurch, quoted before anyone leaves.",
     },
@@ -157,7 +158,7 @@ def shell(title, description, body, prefix="", current=""):
   <meta name="description" content="{description}">
   <link rel="icon" href="{prefix}assets/logo-tile.png">
   <link rel="stylesheet" href="{prefix}css/lenis.css">
-  <link rel="stylesheet" href="{prefix}css/styles.css?v=23">
+  <link rel="stylesheet" href="{prefix}css/styles.css?v=24">
   <script>
     (function () {{
       try {{
@@ -272,7 +273,7 @@ def shell(title, description, body, prefix="", current=""):
   </div>
   <div class="toast" role="status"></div>
   <script src="{prefix}js/lenis.min.js"></script>
-  <script src="{prefix}js/site.js?v=25"></script>
+  <script src="{prefix}js/site.js?v=26"></script>
 </body>
 </html>
 """
@@ -282,8 +283,6 @@ def booking_form():
     return f"""
         <form class="glass book" id="bookingForm">
           <h2 class="serif">Book a cab</h2>
-          <p>We confirm by phone. Email is optional. No flight number.</p>
-          <p class="weather" id="dunWeather" hidden></p>
           <p class="trip-line" id="tripLine">Tell us the pickup and drop-off.</p>
           <div class="route-sketch" id="routeSketch" hidden>
             <svg viewBox="0 0 280 28" aria-hidden="true">
@@ -360,7 +359,8 @@ def booking_form():
     """
 
 
-def story(prefix, image, alt, title, text):
+def story(prefix, image, alt, title, text, credit=""):
+    caption = f"\n          <figcaption>{credit}</figcaption>" if credit else ""
     return f"""
     <section class="section">
       <div class="wrap split">
@@ -370,7 +370,9 @@ def story(prefix, image, alt, title, text):
           <p>{text}</p>
         </div>
         <figure class="frame">
-          <img src="{prefix}{image}" alt="{alt}">
+          <div class="frame-photo">
+            <img src="{prefix}{image}" alt="{alt}">
+          </div>{caption}
         </figure>
       </div>
     </section>
@@ -383,7 +385,7 @@ home = shell(
     f"""
     <main>
       <section class="hero">
-        <video class="hero-video" autoplay muted loop playsinline poster="assets/images/1500530855697-b586d89ba3ee.jpg">
+        <video class="hero-video" autoplay muted loop playsinline poster="assets/images/dunedin-roslyn.jpg">
           <source src="assets/video/hero.mp4" type="video/mp4">
         </video>
         <div class="hero-veil"></div>
@@ -406,7 +408,7 @@ home = shell(
           <div class="reveal">
             <p class="eyebrow" id="nzClock">Dunedin · Open 24 hours</p>
             <h1>Your trip, your way.</h1>
-            <p style="display:flex;gap:10px;flex-wrap:wrap">
+            <p class="hero-actions">
               <a class="btn btn-yellow" href="https://wa.me/64204522958" target="_blank" rel="noreferrer">WhatsApp</a>
               <a class="btn btn-ghost" href="tel:+64204522958" data-copy="+64 20 452 2958">Call +64 20 452 2958</a>
             </p>
@@ -437,7 +439,7 @@ home = shell(
           </div>
         </div>
       </section>
-      {story("", "assets/images/1500530855697-b586d89ba3ee.jpg", "Road toward the mountains", "Based in Dunedin. The longer trips are booked, not waved down.", "Local work stays in the city. Airport, corporate and South Island runs are arranged ahead, with the price talked through before you travel. If you only remember one thing: call +64 20 452 2958. Someone answers, day or night.")}
+      {story("", "assets/images/dunedin-roslyn.jpg", "Dunedin city and harbour from the hills", "Based in Dunedin. The longer trips are booked, not waved down.", "Local work stays in the city. Airport, corporate and South Island runs are arranged ahead, with the price talked through before you travel. If you only remember one thing: call +64 20 452 2958. Someone answers, day or night.", 'Dunedin from Roslyn. Photo: <a href="https://commons.wikimedia.org/wiki/File:Dunedin_City_Centre_from_Roslyn.jpg">Lord A.Nelson</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>')}
     </main>
     """,
     current="home",
@@ -555,7 +557,7 @@ for svc in SERVICES:
               <article class="glass fact"><h3>What you get</h3><p>A private car, and a call back before we dispatch.</p></article>
             </div>
           </section>
-          {story("../", svc["image"], svc["alt"], svc["name"], svc["copy"])}
+          {story("../", svc["image"], svc["alt"], svc["name"], svc["copy"], svc.get("credit", ""))}
           <section class="section" style="padding-top:0">
             <div class="wrap">
               <a class="btn btn-yellow" href="../index.html?service={svc['name'].replace(' ', '%20')}#book">Book {svc['name']}</a>

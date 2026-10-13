@@ -7,7 +7,7 @@
   <meta name="description" content="Town Taxi is a 24 hour Dunedin taxi for airport transfers, local trips, corporate travel and longer South Island runs.">
   <link rel="icon" href="assets/logo-tile.png">
   <link rel="stylesheet" href="css/lenis.css">
-  <link rel="stylesheet" href="css/styles.css?v=23">
+  <link rel="stylesheet" href="css/styles.css?v=24">
   <script>
     (function () {
       try {
@@ -70,7 +70,7 @@
   
     <main>
       <section class="hero">
-        <video class="hero-video" autoplay muted loop playsinline poster="assets/images/1500530855697-b586d89ba3ee.jpg">
+        <video class="hero-video" autoplay muted loop playsinline poster="assets/images/dunedin-roslyn.jpg">
           <source src="assets/video/hero.mp4" type="video/mp4">
         </video>
         <div class="hero-veil"></div>
@@ -93,7 +93,7 @@
           <div class="reveal">
             <p class="eyebrow" id="nzClock">Dunedin · Open 24 hours</p>
             <h1>Your trip, your way.</h1>
-            <p style="display:flex;gap:10px;flex-wrap:wrap">
+            <p class="hero-actions">
               <a class="btn btn-yellow" href="https://wa.me/64204522958" target="_blank" rel="noreferrer">WhatsApp</a>
               <a class="btn btn-ghost" href="tel:+64204522958" data-copy="+64 20 452 2958">Call +64 20 452 2958</a>
             </p>
@@ -101,8 +101,6 @@
           <div id="book" class="reveal">
         <form class="glass book" id="bookingForm">
           <h2 class="serif">Book a cab</h2>
-          <p>We confirm by phone. Email is optional. No flight number.</p>
-          <p class="weather" id="dunWeather" hidden></p>
           <p class="trip-line" id="tripLine">Tell us the pickup and drop-off.</p>
           <div class="route-sketch" id="routeSketch" hidden>
             <svg viewBox="0 0 280 28" aria-hidden="true">
@@ -211,7 +209,10 @@
           <p>Local work stays in the city. Airport, corporate and South Island runs are arranged ahead, with the price talked through before you travel. If you only remember one thing: call +64 20 452 2958. Someone answers, day or night.</p>
         </div>
         <figure class="frame">
-          <img src="assets/images/1500530855697-b586d89ba3ee.jpg" alt="Road toward the mountains">
+          <div class="frame-photo">
+            <img src="assets/images/dunedin-roslyn.jpg" alt="Dunedin city and harbour from the hills">
+          </div>
+          <figcaption>Dunedin from Roslyn. Photo: <a href="https://commons.wikimedia.org/wiki/File:Dunedin_City_Centre_from_Roslyn.jpg">Lord A.Nelson</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></figcaption>
         </figure>
       </div>
     </section>
@@ -282,6 +283,6 @@
   </div>
   <div class="toast" role="status"></div>
   <script src="js/lenis.min.js"></script>
-  <script src="js/site.js?v=25"></script>
+  <script src="js/site.js?v=26"></script>
 </body>
 </html>

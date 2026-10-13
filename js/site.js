@@ -241,49 +241,6 @@ function paintClock() {
 paintClock();
 setInterval(paintClock, 30000);
 
-function weatherPhrase(code) {
-  if (code === 0) return "Clear";
-  if (code === 1) return "Mostly clear";
-  if (code === 2) return "Partly cloudy";
-  if (code === 3) return "Cloudy";
-  if (code === 45 || code === 48) return "Fog";
-  if (code >= 51 && code <= 57) return "Drizzle";
-  if (code >= 61 && code <= 67) return "Rain";
-  if (code >= 71 && code <= 77) return "Snow";
-  if (code >= 80 && code <= 82) return "Showers";
-  if (code >= 85 && code <= 86) return "Snow showers";
-  if (code >= 95) return "Thunder";
-  return "Dunedin";
-}
-function showWeather(text) {
-  const line = document.querySelector("#dunWeather");
-  if (!line || !text) return;
-  line.textContent = text;
-  line.hidden = false;
-}
-async function paintWeather() {
-  const line = document.querySelector("#dunWeather");
-  if (!line) return;
-  try {
-    const cached = JSON.parse(sessionStorage.getItem("townTaxiWeather") || "null");
-    if (cached && Date.now() - cached.at < 30 * 60 * 1000 && cached.text) {
-      showWeather(cached.text);
-      return;
-    }
-  } catch { /* keep going and ask the weather service */ }
-  try {
-    const response = await fetch("https://api.open-meteo.com/v1/forecast?latitude=-45.8742&longitude=170.5036&current=temperature_2m,weather_code&timezone=Pacific%2FAuckland");
-    if (!response.ok) return;
-    const data = await response.json();
-    const temp = Math.round(Number(data.current?.temperature_2m));
-    if (!Number.isFinite(temp)) return;
-    const text = `${weatherPhrase(Number(data.current.weather_code))} in Dunedin, ${temp}°`;
-    sessionStorage.setItem("townTaxiWeather", JSON.stringify({ at: Date.now(), text }));
-    showWeather(text);
-  } catch { /* the line stays hidden if the weather service is down */ }
-}
-paintWeather();
-
 const tripLine = document.querySelector("#tripLine");
 function viaValue() {
   return document.querySelector("#via")?.value.trim() || "";
