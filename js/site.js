@@ -245,6 +245,10 @@ const tripLine = document.querySelector("#tripLine");
 function viaValue() {
   return document.querySelector("#via")?.value.trim() || "";
 }
+function peopleLabel(count) {
+  const people = String(count || "1");
+  return `${people} passenger${people === "1" ? "" : "s"}`;
+}
 function paintTrip() {
   if (!tripLine) return;
   const pickup = document.querySelector("#pickup")?.value.trim();
@@ -255,7 +259,7 @@ function paintTrip() {
   const route = pickup && dropoff
     ? (via ? `${pickup} to ${dropoff}, via ${via}` : `${pickup} to ${dropoff}`)
     : pickup ? `From ${pickup}` : dropoff ? `To ${dropoff}` : "Tell us the pickup and drop-off";
-  tripLine.textContent = `${route} · ${people} passengers · ${when}`;
+  tripLine.textContent = `${route} · ${peopleLabel(people)} · ${when}`;
   const sketch = document.querySelector("#routeSketch");
   const ends = document.querySelector("#routeEnds");
   if (!sketch) return;
@@ -282,7 +286,7 @@ function rememberPassenger() {
 }
 function tripMessage({ name, pickup, via, dropoff, when, passengers, service }) {
   const stop = via ? `, via ${via}` : "";
-  return `Hi Town Taxi, this is ${name || "a passenger"}. Pickup ${pickup}${stop}, drop-off ${dropoff}, ${when}, ${passengers} passengers, ${service}.`;
+  return `Hi Town Taxi, this is ${name || "a passenger"}. Pickup ${pickup}${stop}, drop-off ${dropoff}, ${when}, ${peopleLabel(passengers)}, ${service}.`;
 }
 function paintWhats() {
   if (!liveWhats) return;
@@ -553,7 +557,7 @@ function openDriverCard(data, when) {
   if (to) to.textContent = data.dropoff;
   if (who) {
     const dateBit = data.timeMode === "later" && data.pickupDate ? `${data.pickupDate} · ` : "";
-    who.textContent = `${data.name} · ${dateBit}${data.passengers} passengers · ${data.service}`;
+    who.textContent = `${data.name} · ${dateBit}${peopleLabel(data.passengers)} · ${data.service}`;
   }
   card.hidden = false;
   document.querySelector("#driverClose")?.focus();
@@ -596,7 +600,7 @@ function downloadCalendar(data, when) {
     `DTSTART:${stamp(start)}`,
     `DTEND:${stamp(end)}`,
     `SUMMARY:Town Taxi pickup - ${clean(data.pickup)}`,
-    `DESCRIPTION:${clean(data.pickup)} to ${clean(data.dropoff)}${data.via ? `, via ${clean(data.via)}` : ""}. ${clean(when)}. ${clean(data.passengers)} passengers. ${clean(data.service)}.`,
+    `DESCRIPTION:${clean(data.pickup)} to ${clean(data.dropoff)}${data.via ? `, via ${clean(data.via)}` : ""}. ${clean(when)}. ${clean(peopleLabel(data.passengers))}. ${clean(data.service)}.`,
     "END:VEVENT",
     "END:VCALENDAR",
   ].join("\r\n");
@@ -668,14 +672,14 @@ form?.addEventListener("submit", async (event) => {
     storeTrip(data);
     if (slip && slipTitle && slipBody) {
       slipTitle.textContent = `${data.pickup} to ${data.dropoff}`;
-      slipBody.textContent = `${data.name}${data.via ? ` · via ${data.via}` : ""} · ${when} · ${data.passengers} passengers · ${data.service}`;
+      slipBody.textContent = `${data.name}${data.via ? ` · via ${data.via}` : ""} · ${when} · ${peopleLabel(data.passengers)} · ${data.service}`;
       const message = tripMessage({ ...data, when });
       if (slipWhats) slipWhats.href = `https://wa.me/64204522958?text=${encodeURIComponent(message)}`;
       if (slipMaps) slipMaps.href = mapsHref(data.pickup, data.dropoff, data.via);
       if (slipCopy) {
         slipCopy.onclick = async () => {
           const stop = data.via ? `, via ${data.via}` : "";
-          const text = `${data.pickup} to ${data.dropoff}${stop}. ${data.name}, ${when}, ${data.passengers} passengers, ${data.service}. Town Taxi +64 20 452 2958`;
+          const text = `${data.pickup} to ${data.dropoff}${stop}. ${data.name}, ${when}, ${peopleLabel(data.passengers)}, ${data.service}. Town Taxi +64 20 452 2958`;
           try {
             await navigator.clipboard.writeText(text);
             showToast("Trip copied");

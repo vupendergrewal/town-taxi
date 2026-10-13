@@ -273,7 +273,7 @@ def shell(title, description, body, prefix="", current=""):
   </div>
   <div class="toast" role="status"></div>
   <script src="{prefix}js/lenis.min.js"></script>
-  <script src="{prefix}js/site.js?v=26"></script>
+  <script src="{prefix}js/site.js?v=27"></script>
 </body>
 </html>
 """
@@ -329,7 +329,7 @@ def booking_form():
             </div>
             <div class="field"><label for="passengers">Passengers</label>
               <select id="passengers" name="passengers" required>
-                <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option>
+                <option selected>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option>
               </select>
             </div>
             <input type="hidden" id="service" name="service" value="Taxi">
