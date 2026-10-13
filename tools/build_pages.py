@@ -158,7 +158,7 @@ def shell(title, description, body, prefix="", current=""):
   <meta name="description" content="{description}">
   <link rel="icon" href="{prefix}assets/logo-tile.png">
   <link rel="stylesheet" href="{prefix}css/lenis.css">
-  <link rel="stylesheet" href="{prefix}css/styles.css?v=24">
+  <link rel="stylesheet" href="{prefix}css/styles.css?v=25">
   <script>
     (function () {{
       try {{
@@ -389,6 +389,17 @@ home = shell(
           <source src="assets/video/hero.mp4" type="video/mp4">
         </video>
         <div class="hero-veil"></div>
+        <div class="hero-grid">
+          <div class="reveal">
+            <p class="eyebrow" id="nzClock">Dunedin · Open 24 hours</p>
+            <h1>Your trip, your way.</h1>
+            <p class="hero-actions">
+              <a class="btn btn-yellow" href="https://wa.me/64204522958" target="_blank" rel="noreferrer">WhatsApp</a>
+              <a class="btn btn-ghost" href="tel:+64204522958" data-copy="+64 20 452 2958">Call +64 20 452 2958</a>
+            </p>
+          </div>
+          <div id="book" class="reveal">{booking_form()}</div>
+        </div>
         <div class="hero-drive" aria-hidden="true">
           <div class="horizon-car is-driving">
             <div class="car3d">
@@ -403,17 +414,6 @@ home = shell(
               <div class="car3d-wheel front"><i></i></div>
             </div>
           </div>
-        </div>
-        <div class="hero-grid">
-          <div class="reveal">
-            <p class="eyebrow" id="nzClock">Dunedin · Open 24 hours</p>
-            <h1>Your trip, your way.</h1>
-            <p class="hero-actions">
-              <a class="btn btn-yellow" href="https://wa.me/64204522958" target="_blank" rel="noreferrer">WhatsApp</a>
-              <a class="btn btn-ghost" href="tel:+64204522958" data-copy="+64 20 452 2958">Call +64 20 452 2958</a>
-            </p>
-          </div>
-          <div id="book" class="reveal">{booking_form()}</div>
         </div>
       </section>
       <div class="places" aria-hidden="true">
