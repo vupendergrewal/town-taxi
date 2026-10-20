@@ -158,7 +158,7 @@ def shell(title, description, body, prefix="", current=""):
   <meta name="description" content="{description}">
   <link rel="icon" href="{prefix}assets/logo-tile.png">
   <link rel="stylesheet" href="{prefix}css/lenis.css">
-  <link rel="stylesheet" href="{prefix}css/styles.css?v=32">
+  <link rel="stylesheet" href="{prefix}css/styles.css?v=33">
   <script>
     (function () {{
       try {{
@@ -201,7 +201,7 @@ def shell(title, description, body, prefix="", current=""):
         <a class="btn btn-yellow menu-book" href="{prefix}index.html#book">Book a cab</a>
       </nav>
       <div class="offer">
-        <button class="offer-btn" id="offerBtn" type="button" aria-expanded="false" aria-controls="offerList">Offer</button>
+        <button class="offer-btn" id="offerBtn" type="button" aria-expanded="false" aria-controls="offerList">Airport 79</button>
         <div class="offer-list" id="offerList" hidden>
           <button class="offer-item" type="button">
             <span>Dunedin to Airport</span>

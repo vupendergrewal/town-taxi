@@ -156,6 +156,7 @@ html.is-night .theme-btn .icon-sun { display: block; }
   background: var(--yellow);
   color: var(--ink);
   font-weight: 800;
+  white-space: nowrap;
   cursor: pointer;
   transform-origin: center bottom;
   animation: giggle 2.8s ease-in-out infinite;
@@ -773,7 +774,7 @@ main > .section:first-child { padding-top: 140px; }
   .nav-toggle { display: block; width: 34px; height: 34px; margin-left: 0; }
   .theme-btn { width: 34px; height: 34px; margin-left: auto; }
   .offer { margin-left: 0; }
-  .offer-btn { height: 32px; padding: 0 10px; font-size: 13px; transform-origin: center; }
+  .offer-btn { height: 32px; padding: 0 9px; font-size: 12px; transform-origin: center; }
   .offer-list {
     position: fixed;
     top: 70px;
