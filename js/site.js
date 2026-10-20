@@ -711,9 +711,7 @@ form?.addEventListener("submit", async (event) => {
   } catch (error) {
     if (status) {
       status.className = "form-status bad";
-      status.textContent = error.message === "activation"
-        ? "Check hitowntaxi@gmail.com, including spam, for an email called Activate Form. Click that link once, then send the booking again."
-        : "That didn’t send. Call +64 20 452 2958 or email hitowntaxi@gmail.com.";
+      status.textContent = "That didn’t send. Call or WhatsApp +64 20 452 2958.";
     }
   } finally {
     submit.disabled = false;

@@ -273,7 +273,7 @@ def shell(title, description, body, prefix="", current=""):
   </div>
   <div class="toast" role="status"></div>
   <script src="{prefix}js/lenis.min.js"></script>
-  <script src="{prefix}js/site.js?v=27"></script>
+  <script src="{prefix}js/site.js?v=28"></script>
 </body>
 </html>
 """
