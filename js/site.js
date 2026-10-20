@@ -134,6 +134,31 @@ if (window.Lenis) {
   });
 }
 
+function fitHeader() {
+  if (!header) return;
+  const base = window.innerWidth <= 980 ? 8 : 12;
+  const nav = header.querySelector(".nav");
+  if (!nav) return;
+  const headerStyle = getComputedStyle(header);
+  const navStyle = getComputedStyle(nav);
+  const gap = parseFloat(navStyle.columnGap) || 0;
+  let sum = (parseFloat(headerStyle.paddingLeft) || 0) + (parseFloat(headerStyle.paddingRight) || 0);
+  let count = 0;
+  for (const child of nav.children) {
+    const childStyle = getComputedStyle(child);
+    if (childStyle.display === "none" || childStyle.position === "absolute") continue;
+    const marginLeft = parseFloat(childStyle.marginLeft) || 0;
+    const marginRight = parseFloat(childStyle.marginRight) || 0;
+    sum += child.getBoundingClientRect().width;
+    sum += marginLeft > 12 ? 0 : marginLeft;
+    sum += marginRight > 12 ? 0 : marginRight;
+    count += 1;
+  }
+  if (count > 1) sum += gap * (count - 1);
+  const spare = window.innerWidth - base * 2 - sum - 18;
+  header.style.setProperty("--nav-inset", `${Math.max(0, spare / 2).toFixed(1)}px`);
+}
+
 function frame(time) {
   if (lenis) lenis.raf(time);
   const y = lenis ? lenis.scroll : window.scrollY;
@@ -144,6 +169,7 @@ function frame(time) {
   navShown += (navTarget - navShown) * follow;
   if (Math.abs(navTarget - navShown) < 0.0004) navShown = navTarget;
   header?.style.setProperty("--nav-p", navShown.toFixed(4));
+  fitHeader();
   const line = document.querySelector("#scrollLine");
   if (line) {
     const max = document.documentElement.scrollHeight - window.innerHeight;
