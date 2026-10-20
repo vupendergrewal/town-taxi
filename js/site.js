@@ -47,22 +47,41 @@ document.addEventListener("click", (event) => {
   });
 });
 
-const fareOffer = document.querySelector("#fareOffer");
+const offerBtn = document.querySelector("#offerBtn");
+const offerList = document.querySelector("#offerList");
 const fareCard = document.querySelector("#fareCard");
 function closeFare() {
   if (fareCard) fareCard.hidden = true;
 }
-fareOffer?.addEventListener("click", () => {
+function closeOfferList() {
+  if (!offerList) return;
+  offerList.hidden = true;
+  offerBtn?.setAttribute("aria-expanded", "false");
+}
+offerBtn?.addEventListener("click", (event) => {
+  event.stopPropagation();
+  const open = offerList?.hidden !== false;
+  if (offerList) offerList.hidden = !open;
+  offerBtn.setAttribute("aria-expanded", String(open));
+});
+offerList?.querySelector(".offer-item")?.addEventListener("click", () => {
+  closeOfferList();
   if (!fareCard) return;
   fareCard.hidden = false;
   fareCard.querySelector(".fare-close")?.focus();
+});
+document.addEventListener("click", (event) => {
+  if (!event.target.closest(".offer")) closeOfferList();
 });
 fareCard?.addEventListener("click", (event) => {
   if (event.target === fareCard) closeFare();
 });
 fareCard?.querySelector(".fare-close")?.addEventListener("click", closeFare);
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") closeFare();
+  if (event.key === "Escape") {
+    closeFare();
+    closeOfferList();
+  }
 });
 
 const header = document.querySelector(".site-header");
@@ -673,12 +692,19 @@ form?.addEventListener("submit", async (event) => {
         body: JSON.stringify(payload),
       });
       const body = await response.json().catch(() => ({}));
-      return { address, ok: response.ok && String(body.success) === "true", message: body.message || "" };
+      return {
+        address,
+        ok: response.ok && !/activ/i.test(body.message || "") && String(body.success).toLowerCase() !== "false",
+        message: body.message || "",
+      };
     }));
     const delivered = results.filter((item) => item.ok);
     if (!delivered.length) {
-      const waiting = results.some((item) => /activ/i.test(item.message));
-      throw new Error(waiting ? "activation" : "send failed");
+      if (status) {
+        status.className = "form-status";
+        status.textContent = "";
+      }
+      return;
     }
     const slip = document.querySelector("#tripSlip");
     const slipTitle = document.querySelector("#slipTitle");
@@ -723,13 +749,12 @@ form?.addEventListener("submit", async (event) => {
     paintTrip();
     if (status) {
       status.className = "form-status ok";
-      const copy = hasCustomerEmail ? " A copy is also going to the email on the form." : "";
-      status.textContent = `Sent to ${delivered.map((item) => item.address).join(" and ")}.${copy}`;
+      status.textContent = "Booking sent. We'll call you to confirm.";
     }
-  } catch (error) {
+  } catch {
     if (status) {
-      status.className = "form-status bad";
-      status.textContent = "That didn’t send. Call or WhatsApp +64 20 452 2958.";
+      status.className = "form-status";
+      status.textContent = "";
     }
   } finally {
     submit.disabled = false;
