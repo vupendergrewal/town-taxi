@@ -159,15 +159,12 @@ html.is-night .theme-btn .icon-sun { display: block; }
   font-weight: 800;
   white-space: nowrap;
   cursor: pointer;
-  transform-origin: center bottom;
-  animation: giggle 2.8s ease-in-out infinite;
+  animation: blink 1.4s ease-in-out infinite;
 }
-@keyframes giggle {
-  0%, 68%, 100% { transform: rotate(0deg); }
-  74% { transform: rotate(-9deg); }
-  80% { transform: rotate(8deg); }
-  86% { transform: rotate(-5deg); }
-  92% { transform: rotate(3deg); }
+@keyframes blink {
+  0%, 46%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(253, 208, 1, 0); }
+  50%, 62% { opacity: 0.35; box-shadow: 0 0 0 0 rgba(253, 208, 1, 0); }
+  56%, 68% { opacity: 1; box-shadow: 0 0 0 6px rgba(253, 208, 1, 0.45); }
 }
 .offer-list {
   position: absolute;

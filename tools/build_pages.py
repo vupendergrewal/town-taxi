@@ -158,7 +158,7 @@ def shell(title, description, body, prefix="", current=""):
   <meta name="description" content="{description}">
   <link rel="icon" href="{prefix}assets/logo-tile.png">
   <link rel="stylesheet" href="{prefix}css/lenis.css">
-  <link rel="stylesheet" href="{prefix}css/styles.css?v=36">
+  <link rel="stylesheet" href="{prefix}css/styles.css?v=37">
   <script>
     (function () {{
       try {{
