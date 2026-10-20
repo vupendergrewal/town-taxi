@@ -85,8 +85,7 @@ document.addEventListener("keydown", (event) => {
 });
 
 const header = document.querySelector(".site-header");
-let navShown = 0;
-let navTarget = 0;
+let navTarget = -1;
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const touch = window.matchMedia("(pointer: coarse), (max-width: 980px)").matches;
 const navRange = touch ? 220 : 460;
@@ -134,14 +133,16 @@ if (window.Lenis) {
   });
 }
 
-function fitHeader() {
+function measureHeader() {
   if (!header) return;
-  const base = window.innerWidth <= 980 ? 8 : 12;
   const nav = header.querySelector(".nav");
   if (!nav) return;
+  const live = header.style.getPropertyValue("--nav-p");
+  header.style.setProperty("--nav-p", "1");
+  header.style.setProperty("--nav-inset", "0px");
+  const base = window.innerWidth <= 980 ? 8 : 12;
   const headerStyle = getComputedStyle(header);
-  const navStyle = getComputedStyle(nav);
-  const gap = parseFloat(navStyle.columnGap) || 0;
+  const gap = parseFloat(getComputedStyle(nav).columnGap) || 0;
   let sum = (parseFloat(headerStyle.paddingLeft) || 0) + (parseFloat(headerStyle.paddingRight) || 0);
   let count = 0;
   for (const child of nav.children) {
@@ -157,24 +158,28 @@ function fitHeader() {
   if (count > 1) sum += gap * (count - 1);
   const spare = window.innerWidth - base * 2 - sum - 18;
   header.style.setProperty("--nav-inset", `${Math.max(0, spare / 2).toFixed(1)}px`);
+  header.style.setProperty("--nav-p", live || "0");
 }
+
+measureHeader();
+window.addEventListener("resize", measureHeader);
+
+const scrollLine = document.querySelector("#scrollLine");
 
 function frame(time) {
   if (lenis) lenis.raf(time);
   const y = lenis ? lenis.scroll : window.scrollY;
   const moved = Math.abs(window.scrollY - menuAnchor) > 28 || Math.abs(y - menuAnchor) > 28;
   if (touch && navLinks?.classList.contains("open") && moved) closeMenus();
-  navTarget = Math.min(1, Math.max(0, y / navRange));
-  const follow = 0.06;
-  navShown += (navTarget - navShown) * follow;
-  if (Math.abs(navTarget - navShown) < 0.0004) navShown = navTarget;
-  header?.style.setProperty("--nav-p", navShown.toFixed(4));
-  fitHeader();
-  const line = document.querySelector("#scrollLine");
-  if (line) {
+  const next = Math.min(1, Math.max(0, y / navRange));
+  if (next !== navTarget) {
+    navTarget = next;
+    header?.style.setProperty("--nav-p", navTarget.toFixed(3));
+  }
+  if (scrollLine) {
     const max = document.documentElement.scrollHeight - window.innerHeight;
     const progress = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
-    line.style.transform = `scaleX(${progress})`;
+    scrollLine.style.transform = `scaleX(${progress})`;
   }
   requestAnimationFrame(frame);
 }

@@ -115,6 +115,7 @@ h2 { font-size: clamp(34px, 4vw, 56px); line-height: 1.02; margin: 0 0 14px; }
   z-index: 1;
   container-type: inline-size;
 }
+.nav > * { flex-shrink: 0; }
 .brand { display: flex; align-items: center; gap: 10px; min-width: 160px; }
 .brand img { width: calc(78px - var(--nav-p) * 16px); height: calc(46px - var(--nav-p) * 10px); object-fit: contain; }
 .brand span { display: flex; flex-direction: column; font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
@@ -789,7 +790,7 @@ main > .section:first-child { padding-top: 140px; }
     right: calc(8px + var(--nav-p) * var(--nav-inset));
     height: calc(56px - var(--nav-p) * 8px);
     min-height: 0;
-    padding: 0 calc(8px - var(--nav-p) * 2px) 0 calc(10px - var(--nav-p) * 2px);
+    padding: 0 14px;
   }
   .desk-book { display: none; }
   .nav-links .menu-book { display: inline-flex; height: 42px; margin-top: 6px; white-space: nowrap; }

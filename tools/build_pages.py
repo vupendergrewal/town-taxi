@@ -158,7 +158,7 @@ def shell(title, description, body, prefix="", current=""):
   <meta name="description" content="{description}">
   <link rel="icon" href="{prefix}assets/logo-tile.png">
   <link rel="stylesheet" href="{prefix}css/lenis.css">
-  <link rel="stylesheet" href="{prefix}css/styles.css?v=34">
+  <link rel="stylesheet" href="{prefix}css/styles.css?v=36">
   <script>
     (function () {{
       try {{
@@ -289,7 +289,7 @@ def shell(title, description, body, prefix="", current=""):
   </div>
   <div class="toast" role="status"></div>
   <script src="{prefix}js/lenis.min.js"></script>
-  <script src="{prefix}js/site.js?v=35"></script>
+  <script src="{prefix}js/site.js?v=39"></script>
 </body>
 </html>
 """
