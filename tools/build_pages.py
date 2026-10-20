@@ -158,7 +158,7 @@ def shell(title, description, body, prefix="", current=""):
   <meta name="description" content="{description}">
   <link rel="icon" href="{prefix}assets/logo-tile.png">
   <link rel="stylesheet" href="{prefix}css/lenis.css">
-  <link rel="stylesheet" href="{prefix}css/styles.css?v=25">
+  <link rel="stylesheet" href="{prefix}css/styles.css?v=29">
   <script>
     (function () {{
       try {{
@@ -200,6 +200,10 @@ def shell(title, description, body, prefix="", current=""):
         <a href="{prefix}contact.html"{current_attr("contact")}>Contact</a>
         <a class="btn btn-yellow menu-book" href="{prefix}index.html#book">Book a cab</a>
       </nav>
+      <button class="fare-offer" id="fareOffer" type="button" aria-haspopup="dialog" aria-controls="fareCard" aria-label="Dunedin to Airport, $79">
+        <span class="fare-route">Dunedin → Airport</span>
+        <strong>$79</strong>
+      </button>
       <button class="theme-btn" type="button" aria-pressed="false" aria-label="Switch to night">
         <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.2 13.4A6.4 6.4 0 0 1 9.6 4.3 7 7 0 1 0 19.7 14.2a6.4 6.4 0 0 1-3.5-.8z"/></svg>
         <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.4"/><path d="M12 3.2v2.2M12 18.6v2.2M3.2 12h2.2M18.6 12h2.2M5.8 5.8l1.5 1.5M16.7 16.7l1.5 1.5M18.2 5.8l-1.5 1.5M7.3 16.7l-1.5 1.5"/></svg>
@@ -257,6 +261,13 @@ def shell(title, description, body, prefix="", current=""):
     <a class="btn btn-ghost" href="tel:+64204522958">Call</a>
     <a class="btn btn-yellow" href="{prefix}index.html#book">Book</a>
   </div>
+  <div class="fare-card" id="fareCard" hidden>
+    <div class="fare-sheet" role="dialog" aria-modal="true" aria-labelledby="fareTitle">
+      <button class="fare-close" type="button">Close</button>
+      <h2 id="fareTitle">Dunedin to Airport, $79</h2>
+      <img src="{prefix}assets/images/airport-fare.jpg" alt="Flat rate. Dunedin City to Dunedin Airport, $79. Book now 020 452 2958.">
+    </div>
+  </div>
   <div class="driver-card" id="driverCard" hidden>
     <div class="driver-sheet" role="dialog" aria-modal="true" aria-labelledby="driverWhen">
       <p class="eyebrow">With the desk</p>
@@ -273,7 +284,7 @@ def shell(title, description, body, prefix="", current=""):
   </div>
   <div class="toast" role="status"></div>
   <script src="{prefix}js/lenis.min.js"></script>
-  <script src="{prefix}js/site.js?v=28"></script>
+  <script src="{prefix}js/site.js?v=29"></script>
 </body>
 </html>
 """

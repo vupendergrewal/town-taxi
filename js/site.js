@@ -47,6 +47,24 @@ document.addEventListener("click", (event) => {
   });
 });
 
+const fareOffer = document.querySelector("#fareOffer");
+const fareCard = document.querySelector("#fareCard");
+function closeFare() {
+  if (fareCard) fareCard.hidden = true;
+}
+fareOffer?.addEventListener("click", () => {
+  if (!fareCard) return;
+  fareCard.hidden = false;
+  fareCard.querySelector(".fare-close")?.focus();
+});
+fareCard?.addEventListener("click", (event) => {
+  if (event.target === fareCard) closeFare();
+});
+fareCard?.querySelector(".fare-close")?.addEventListener("click", closeFare);
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeFare();
+});
+
 const header = document.querySelector(".site-header");
 let navShown = 0;
 let navTarget = 0;
